@@ -1,16 +1,20 @@
 <script setup>
 import vIntersect from '@/directives/intersect'
-import { ref, computed } from "vue";
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
 import { v4 as uuidv4 } from 'uuid'
-import randomChinese from "@/utils/ChineseLoremIpsum";
+import randomChinese from '@/utils/ChineseLoremIpsum'
 
 // const randomHeight = getRandomInt(500, 800);
 
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
+const $router = useRouter()
 
 const text = randomChinese(getRandomInt(20, 90))
 const title = randomChinese(getRandomInt(8, 20), false)
@@ -24,18 +28,9 @@ const onIntersect = (entries, observer, isIntersecting) => {
 
 <template>
   <a
-    class="
-      flex
-      max-w-sm
-      w-full
-      bg-white
-      shadow-md
-      overflow-hidden
-      mx-auto
-      mb-1
-    "
-    v-intersect="{handler: onIntersect}"
-    @click="this.$router.push(`/explore/${uuid}`)"
+    class="flex max-w-sm w-full bg-white shadow-md overflow-hidden mx-auto mb-1"
+    v-intersect="{ handler: onIntersect }"
+    @click="$router.push(`/explore/${uuid}`)"
   >
     <div
       class="
@@ -59,17 +54,7 @@ const onIntersect = (entries, observer, isIntersecting) => {
         "
       ></div>
 
-      <div
-        class="
-          relative
-          cursor-pointer
-          z-10
-          px-4
-          pt-10
-          space-y-6
-          movie_info
-        "
-      >
+      <div class="relative cursor-pointer z-10 px-4 pt-10 space-y-6 movie_info">
         <div class="poster__info align-self-end w-full">
           <div :class="`h-[150px]`"></div>
           <div class="space-y-6 detail_info">
@@ -87,19 +72,20 @@ const onIntersect = (entries, observer, isIntersecting) => {
         </div>
       </div>
       <div class="absolute inset-0 object-cover">
-        <img class=""
-        :src="`https://picsum.photos/seed/${uuid}/600/900`" 
-        loading="lazy" style="filter: grayscale(0);">
+        <img
+          class=""
+          :src="`https://picsum.photos/seed/${uuid}/600/900`"
+          loading="lazy"
+          style="filter: grayscale(0)"
+        />
       </div>
     </div>
   </a>
-
-  
 </template>
 
 <style>
 .grid-card {
-  font-family: "Noto Sans TC";
+  font-family: 'Noto Sans TC';
   /* width: 100%; */
 }
 </style>
