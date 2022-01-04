@@ -1,6 +1,8 @@
 <script setup>
 import GridColumn from '@/components/GridColumn.vue'
 import ExplorerCard from '@/components/ExplorerCard.vue'
+
+const main = useMain()
 </script>
 
 <template>
