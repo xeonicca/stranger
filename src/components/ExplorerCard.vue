@@ -1,36 +1,16 @@
 <script setup>
 import vIntersect from '@/directives/intersect'
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+const props = defineProps({
+  ponder: Object
+})
 
-import { v4 as uuidv4 } from 'uuid'
-import randomChinese from '@/utils/ChineseLoremIpsum'
-
-// const randomHeight = getRandomInt(500, 800);
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-const $router = useRouter()
-
-const text = randomChinese(getRandomInt(20, 90))
-const title = randomChinese(getRandomInt(8, 20), false)
-let tempId = uuidv4()
-const uuid = tempId.substring(0, tempId.indexOf('-'))
-const randomHype = getRandomInt(10, 100)
-const onIntersect = (entries, observer, isIntersecting) => {
-  entries[0].target.classList.toggle('in-view', isIntersecting)
-}
+const { id, content, question } = toRefs(props.ponder)
 </script>
 
 <template>
   <a
     class="flex max-w-sm w-full bg-white shadow-md overflow-hidden mx-auto mb-1"
-    v-intersect="{ handler: onIntersect }"
-    @click="$router.push(`/explore/${uuid}`)"
+    @click="$router.push(`/explore/${id}`)"
   >
     <div
       class="
@@ -66,7 +46,7 @@ const onIntersect = (entries, observer, isIntersecting) => {
             </div> -->
             <div class="flex flex-col overview">
               <div class="flex flex-col"></div>
-              <p class="text-md mb-6" v-html="title"></p>
+              <p class="text-md mb-6" v-html="question"></p>
             </div>
           </div>
         </div>
@@ -74,7 +54,7 @@ const onIntersect = (entries, observer, isIntersecting) => {
       <div class="absolute inset-0 object-cover">
         <img
           class=""
-          :src="`https://picsum.photos/seed/${uuid}/600/900`"
+          :src="`https://picsum.photos/seed/${id}/600/900`"
           loading="lazy"
           style="filter: grayscale(0)"
         />

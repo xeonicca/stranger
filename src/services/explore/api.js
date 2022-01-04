@@ -1,8 +1,10 @@
 import randomChinese from '@/utils/ChineseLoremIpsum'
-import chance from 'chance'
+import Chance from 'chance'
 
-export async function fetchActiveQuestions(total = 20) {
-  return new Array(20).map((v) => {
+const chance = Chance()
+
+export async function fetchActiveQuestions(total = 30) {
+  return Array.apply(null, Array(total)).map((v) => {
     let id = chance.hash({ length: 8 })
     return {
       id,

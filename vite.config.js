@@ -12,17 +12,23 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
+        'pinia',
         // 'vue-i18n',
         // '@vueuse/head',
         // '@vueuse/core',
         // 'vitest',
+        // {
+        //   '@/stores/main': ['useMain'],
+        // },
       ],
     }),
 
     // Inspect the intermediate state of Vite plugins
-    Inspect(),
+    // Inspect(),
 
     Components({
+      dirs: ['src/components', 'src/views'],
+
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
 
