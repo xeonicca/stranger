@@ -1,13 +1,16 @@
 import randomChinese from '@/utils/ChineseLoremIpsum'
-import chance from 'chance'
+import Chance from 'chance'
+
+const chance = Chance()
 
 export async function fetchStories(total = 20) {
-  return new Array(20).map((v) => {
+  return Array.apply(null, Array(total)).map((v) => {
     let id = chance.hash({ length: 8 })
     return {
       id,
-      author: randomChinese(chance.integer({ min: 5, max: 10 })),
+      author: randomChinese(chance.integer({ min: 5, max: 10 }), false),
       content: randomChinese(chance.integer({ min: 10, max: 20 })),
+      createTime: chance.date({ string: true }),
     }
   })
 }

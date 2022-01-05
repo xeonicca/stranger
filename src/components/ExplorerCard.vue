@@ -1,10 +1,10 @@
 <script setup>
 import vIntersect from '@/directives/intersect'
 const props = defineProps({
-  ponder: Object
+  ponder: Object,
 })
 
-const { id, content, question } = toRefs(props.ponder)
+const { id, content, question, storyCount } = toRefs(props.ponder)
 </script>
 
 <template>
@@ -12,16 +12,7 @@ const { id, content, question } = toRefs(props.ponder)
     class="flex max-w-sm w-full bg-white shadow-md overflow-hidden mx-auto mb-1"
     @click="$router.push(`/explore/${id}`)"
   >
-    <div
-      class="
-        overflow-hidden
-        relative
-        w-full
-        shadow-lg
-        hover:shadow-2xl
-        text-white
-      "
-    >
+    <div class="overflow-hidden relative w-full text-white">
       <div
         class="
           absolute
@@ -34,7 +25,20 @@ const { id, content, question } = toRefs(props.ponder)
         "
       ></div>
 
-      <div class="relative cursor-pointer z-10 px-4 pt-10 space-y-6 movie_info">
+      <div class="relative cursor-pointer z-10 movie_info">
+        <span
+          class="
+            absolute
+            top-2
+            right-2
+            rounded-2xl
+            py-[2px]
+            px-[6px]
+            text-xs
+            bg-gray-900/75
+          "
+          >{{ storyCount }}則故事</span
+        >
         <div class="poster__info align-self-end w-full">
           <div :class="`h-[150px]`"></div>
           <div class="space-y-6 detail_info">
@@ -46,7 +50,7 @@ const { id, content, question } = toRefs(props.ponder)
             </div> -->
             <div class="flex flex-col overview">
               <div class="flex flex-col"></div>
-              <p class="text-md mb-6" v-html="question"></p>
+              <p class="p-4 text-md" v-html="question"></p>
             </div>
           </div>
         </div>

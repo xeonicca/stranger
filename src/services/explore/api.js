@@ -10,6 +10,7 @@ export async function fetchActiveQuestions(total = 30) {
       id,
       question: randomChinese(chance.integer({ min: 8, max: 20 })),
       content: randomChinese(chance.integer({ min: 20, max: 90 })),
+      storyCount: chance.integer({ min: 5, max: 30 })
     }
   })
 }

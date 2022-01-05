@@ -17,9 +17,9 @@ export default defineConfig({
         // '@vueuse/head',
         // '@vueuse/core',
         // 'vitest',
-        // {
-        //   '@/stores/main': ['useMain'],
-        // },
+        {
+          '@/stores/main': ['useMain'],
+        },
       ],
     }),
 

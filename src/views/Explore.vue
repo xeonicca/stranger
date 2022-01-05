@@ -59,30 +59,28 @@
 
   <div class="grid gap-1 grid-cols-2 px-4 py-6">
     <GridColumn class="pr-1">
-      <StoryCard v-for="i in 30" :key="i" />
+      <StoryCard v-for="s in leftColumnList" :story="s" :key="s.id" />
     </GridColumn>
     <GridColumn class="pl-1">
-      <StoryCard v-for="i in 30" :key="i" />
+      <StoryCard v-for="s in rightColumnList" :story="s" :key="s.id" />
     </GridColumn>
   </div>
 </template>
 
 
 <script setup>
-import Navbar from '@/components/Navbar.vue'
-import GridColumn from '@/components/GridColumn.vue'
-import StoryCard from '@/components/StoryCard.vue'
-
-import { useRouter, useRoute } from 'vue-router'
-
 import randomChinese from '@/utils/ChineseLoremIpsum'
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
+import Chance from 'chance'
 
+const chance = Chance()
+
+const main = useMain()
 const $route = useRoute()
 const uuid = $route.params.uuid
-const title = randomChinese(getRandomInt(8, 20), false)
+const title = randomChinese(chance.integer({ min: 5, max: 10 }), false)
+
+main.fetchStoryList()
+
+const leftColumnList = computed(() => main.storyList.slice(0, 10))
+const rightColumnList = computed(() => main.storyList.slice(10, 20))
 </script>
