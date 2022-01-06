@@ -8,6 +8,10 @@ export const routes = [
     path: '/explore/:uuid',
     component: () => import('./views/Explore.vue'),
   },
+  {
+    path: '/story/:uuid',
+    component: () => import('./views/Story.vue'),
+  },
   // {
   //   path: '/about',
   //   meta: { title: 'About' },
