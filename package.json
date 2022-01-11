@@ -25,7 +25,7 @@
     "@vitejs/plugin-vue": "^2.0.1",
     "autoprefixer": "^10.4.1",
     "tailwindcss": "^3.0.8",
-    "unplugin-auto-import": "^0.5.5",
+    "unplugin-auto-import": "^0.5.9",
     "unplugin-vue-components": "^0.17.11",
     "vite": "^2.7.9",
     "vite-plugin-inspect": "^0.3.12"
